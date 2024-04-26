@@ -33,12 +33,15 @@ const TabsLayout = () => {
                         borderTopWidth: 1,
                         borderTopColor: "#232533",
                         height: 84
-                    }
+                    },
+                    headerShown: false,
+
                 } }
+
             >
                 <Tabs.Screen name='home' options={ {
-                    headerShown: false,
                     title: "Home",
+                    headerShown: false,
                     tabBarIcon: ( { color, focused } ) => (
                         <TabIcon
                             icon={ icons.home }
@@ -48,10 +51,11 @@ const TabsLayout = () => {
                         />
                     ),
 
+
                 } } />
                 <Tabs.Screen name='create' options={ {
-                    headerShown: false,
                     title: "Create",
+                    headerShown: false,
                     tabBarIcon: ( { color, focused } ) => (
                         <TabIcon
                             icon={ icons.plus }

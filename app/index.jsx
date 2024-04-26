@@ -1,4 +1,4 @@
-import { Link } from 'expo-router';
+import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -10,7 +10,7 @@ export default function App() {
             <ScrollView contentContainerStyle={ {
                 height: '100%'
             } } >
-                <View className="w-full h-full items-center  px-4" >
+                <View className="w-full min-h-[90vh] items-center justify-center  px-4" >
                     <Image
                         source={ images.logo }
                         resizeMode='contain'
@@ -29,9 +29,11 @@ export default function App() {
                         <Image source={ images.path } resizeMode='center' className="w-20 absolute -bottom-4 -right-4" />
                     </View>
                     <Text className="text-gray-100 mt-7 font-pregular text-sm text-center" >Where Creativity Meets Innovation: Embark on a Journey of Limitless Exploration with Aora</Text>
-                    <CustomButton />
+                    <CustomButton title="Continue With Email" customStyles="w-full mt-7" handlePress={ () => { router.push( '/signin' ) } } textStyles="" isLoading={ false } />
+
                 </View>
             </ScrollView>
+            <StatusBar backgroundColor='#161622' style='light' />
         </SafeAreaView>
     );
 }
