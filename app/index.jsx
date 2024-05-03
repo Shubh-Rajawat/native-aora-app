@@ -29,7 +29,7 @@ export default function App() {
                         <Image source={ images.path } resizeMode='center' className="w-20 absolute -bottom-4 -right-4" />
                     </View>
                     <Text className="text-gray-100 mt-7 font-pregular text-sm text-center" >Where Creativity Meets Innovation: Embark on a Journey of Limitless Exploration with Aora</Text>
-                    <CustomButton title="Continue With Email" customStyles="w-full mt-7" handlePress={ () => { router.push( '/signin' ) } } textStyles="" isLoading={ false } />
+                    <CustomButton title="Continue With Email" customStyles="w-full mt-7" handlePress={ () => { router.push( '/signup' ) } } textStyles="" isLoading={ false } />
 
                 </View>
             </ScrollView>

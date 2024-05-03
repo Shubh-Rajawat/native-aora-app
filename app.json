@@ -5,12 +5,13 @@
     "scheme": "aora",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "icon": "./assets/images/logo-small.png",
+    "userInterfaceStyle": "automatic",
+    "backgroundColor": "#161622",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#161622"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -20,9 +21,11 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+        "foregroundImage": "./assets/images/logo-small.png",
+        "backgroundColor": "#161622",
+        "resizeMode": "contain"
+      },
+      "package":"com.stream.streamkaro"
     },
     "web": {
       "favicon": "./assets/favicon.png"

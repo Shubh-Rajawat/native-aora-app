@@ -5,21 +5,34 @@ import images from "../../constants/images"
 import FormField from '../../components/FormField'
 import CustomButton from '../../components/CustomButton'
 import { Link } from 'expo-router'
-const SignIn = () => {
+import { createUser } from '../../lib/appwrite'
+const SignUp = () => {
     const [ form, setForm ] = useState( {
+        userName: "",
         email: '',
         password: ''
     } )
     const [ isSubmitting, setSubmitting ] = useState( false )
     const submit = () => {
-
+        if ( !userInfo.email && !userInfo.password && !userInfo.userName ) {
+            createUser( form );
+        }
     }
     return (
         <SafeAreaView className="bg-primary h-full" >
             <ScrollView>
                 <View className="w-full justify-center min-h-[90vh] px-4 my-6" >
                     <Image source={ images.logo } resizeMode='contain' className='w-[115px] h-[35px]' />
-                    <Text className='text-xl text-white mt-10 font-psemibold' ></Text>
+                    <Text className='text-xl text-white mt-10 mb-5 font-psemibold text-center'>Sign up</Text>
+                    <FormField
+                        title="Username"
+                        value={ form.userName }
+                        handleChangeText={ ( e ) => {
+                            setForm( { ...form, userName: e } )
+                        } }
+                        otherStyles={ 'mt-7' }
+
+                    />
                     <FormField
                         title="Email"
                         value={ form.email }
@@ -46,9 +59,9 @@ const SignIn = () => {
 
                     <View className="flex-row  justify-center gap-2 items-center pt-7 " >
                         <Text className="text-gray-100 text-lg font-pregular" >
-                            Don't have an Account?
+                            Have an account already?
                         </Text >
-                        <Link className='text-lg text-secondary font-psemibold' href={ '/signup' } >Sign up</Link>
+                        <Link className='text-lg text-secondary font-psemibold' href={ '/signin' } >Sign in</Link>
                     </View>
                 </View>
             </ScrollView>
@@ -57,6 +70,6 @@ const SignIn = () => {
 }
 
 
-export default SignIn;
+export default SignUp;
 
 const styles = StyleSheet.create( {} )
