@@ -5,8 +5,9 @@ import images from "../../constants/images"
 import FormField from '../../components/FormField'
 import CustomButton from '../../components/CustomButton'
 import { Link, router } from 'expo-router'
-import { createUser } from '../../lib/appwrite'
+
 import { useGlobalContext } from '../../context/GlobalProvider'
+import { createUser } from '../../lib/appwrite'
 const SignUp = () => {
     const { setUser, setIsLoggedIn } = useGlobalContext();
     const [ form, setForm ] = useState( {
@@ -23,13 +24,17 @@ const SignUp = () => {
 
         setSubmitting( true );
         try {
-            const result = await createUser( form );
+
+            const result = await createUser( form.email, form.password, form.userName );
+
             setUser( result );
             setIsLoggedIn( true )
             router.replace( '/home' )
+            return;
         } catch ( error ) {
-            Alert.alert( 'NewError', error.message ) // Here , This code is returning "Constructor is not callable"
-            console.log( error )
+            Alert.alert( 'NewError', error.message ) // This error "Constructor is not callable" has been fixed. Thank You
+            console.log( "signUPUPUP", error )
+
         } finally {
             setSubmitting( false );
         }

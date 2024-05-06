@@ -7,7 +7,7 @@ import CustomButton from '../../components/CustomButton'
 import { Link, router } from 'expo-router'
 import { createUser, signIn } from '../../lib/appwrite'
 const SignIn = () => {
-    const { setUser, setIsLoggedIn } = useGlobalContext();
+    // const { setUser, setIsLoggedIn } = useGlobalContext();
     const [ form, setForm ] = useState( {
         email: '',
         password: ''
@@ -23,11 +23,11 @@ const SignIn = () => {
         try {
             const result = await signIn( form.email, form.password );
             setUser( result );
-            setIsLoggedIn( true )
+            setIsLoggedIn( true );
             router.replace( '/home' )
         } catch ( error ) {
             Alert.alert( 'NewError', error.message )
-            console.log( error )
+            console.log( "signin-catch-error", error )
         } finally {
             setSubmitting( false );
         }
@@ -69,6 +69,7 @@ const SignIn = () => {
                         </Text >
                         <Link className='text-lg text-secondary font-psemibold' href={ '/signup' } >Sign up</Link>
                     </View>
+                    <Link className='text-lg text-secondary font-psemibold' href={ '/home' } >Home</Link>
                 </View>
             </ScrollView>
         </SafeAreaView>
