@@ -1,22 +1,39 @@
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Alert, Image, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import images from "../../constants/images"
 import FormField from '../../components/FormField'
 import CustomButton from '../../components/CustomButton'
-import { Link } from 'expo-router'
+import { Link, router } from 'expo-router'
 import { createUser } from '../../lib/appwrite'
+import { useGlobalContext } from '../../context/GlobalProvider'
 const SignUp = () => {
+    const { setUser, setIsLoggedIn } = useGlobalContext();
     const [ form, setForm ] = useState( {
         userName: "",
         email: '',
         password: ''
     } )
-    const [ isSubmitting, setSubmitting ] = useState( false )
-    const submit = () => {
-        if ( !userInfo.email && !userInfo.password && !userInfo.userName ) {
-            createUser( form );
+    const [ isSubmitting, setSubmitting ] = useState( false );
+    const submit = async () => {
+        if ( !form.email && !form.password && !form.userName ) {
+            Alert.alert( "Warning!", "All fields are required" );
+            return;
         }
+
+        setSubmitting( true );
+        try {
+            const result = await createUser( form );
+            setUser( result );
+            setIsLoggedIn( true )
+            router.replace( '/home' )
+        } catch ( error ) {
+            Alert.alert( 'NewError', error.message ) // Here , This code is returning "Constructor is not callable"
+            console.log( error )
+        } finally {
+            setSubmitting( false );
+        }
+
     }
     return (
         <SafeAreaView className="bg-primary h-full" >
@@ -51,7 +68,7 @@ const SignUp = () => {
                         otherStyles={ 'mt-7' }
                     />
                     <CustomButton
-                        title={ 'Sign In' }
+                        title={ 'Sign Up' }
                         handlePress={ submit }
                         customStyles="mt-7"
                         isLoading={ isSubmitting }
