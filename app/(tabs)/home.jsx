@@ -5,12 +5,15 @@ import images from '../../constants/images'
 import SearchInput from '../../components/SearchInput'
 import Trending from '../../components/Trending'
 import EmptyState from '../../components/EmptyState'
-import { getAllPosts } from '../../lib/appwrite'
+import { getAllPosts, getLatestPosts } from '../../lib/appwrite'
 import useAppwrite from '../../lib/useAppwrite'
+import VideoCard from '../../components/VideoCard'
+import { useGlobalContext } from '../../context/GlobalProvider'
 
 const Home = () => {
-
+    const { user, setUser, setIsLoggedIn } = useGlobalContext();
     const { data: posts, refetch, isLoading } = useAppwrite( getAllPosts );
+    const { data: latestPosts } = useAppwrite( getLatestPosts );
 
     const [ refreshing, setRefreshing ] = useState( false );
 
@@ -27,14 +30,14 @@ const Home = () => {
                 data={ posts }
                 keyExtractor={ ( item ) => item.$id }
                 renderItem={ ( { item } ) => (
-                    <Text className="text-white" >{ item.title }</Text>
+                    <VideoCard video={ item } />
                 ) }
                 ListHeaderComponent={ () => (
                     <View className="my-6 px-4 space-y-6" >
                         <View className="flex-row justify-between items-start mb-6" >
                             <View className="" >
                                 <Text className="font-pmedium text-sm text-gray-100" >Welcome</Text>
-                                <Text className="font-psemibold text-2xl text-white" >Shubh</Text>
+                                <Text className="font-psemibold text-2xl text-white" >{ user?.username }</Text>
                             </View>
                             <View className="mt-1.5" >
                                 <Image source={ images.logoSmall } resizeMode='contain' className="w-9 h-10" />
@@ -42,8 +45,8 @@ const Home = () => {
                         </View>
                         <SearchInput />
                         <View className="w-full flex-1 pt-5 pb-8" >
-                            <Text className="text-gray-100 text-lg font-pregular mb-3 " >Latest Videos</Text>
-                            <Trending posts={ [ { id: 1 }, { id: 2 }, { id: 3 } ] ?? [] } />
+                            <Text className="text-gray-100 text-lg font-pregular mb-3 " >Trending Videos</Text>
+                            <Trending posts={ latestPosts ?? [] } />
                         </View>
                     </View>
                 ) }

@@ -12,7 +12,7 @@ export default function App() {
     if ( !isLoading && isLoggedIn ) {
         return <Redirect href={ '/home' } />
     }
-    console.log( "user", user )
+    // console.log( "user", user )
     return (
         <SafeAreaView className="bg-primary h-full" >
             <ScrollView contentContainerStyle={ {

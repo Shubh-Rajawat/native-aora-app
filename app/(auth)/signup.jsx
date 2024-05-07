@@ -53,7 +53,6 @@ const SignUp = () => {
                             setForm( { ...form, userName: e } )
                         } }
                         otherStyles={ 'mt-7' }
-
                     />
                     <FormField
                         title="Email"
