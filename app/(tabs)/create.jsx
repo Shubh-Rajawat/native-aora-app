@@ -6,7 +6,7 @@ import { ResizeMode, Video } from 'expo-av';
 import icon from '../../constants/icon';
 import CustomButton from '../../components/CustomButton';
 import * as DocumentPicker from 'expo-document-picker';
-import * as ImagePicker from 'expo-image-picker';
+
 import { createUser, createVideo } from '../../lib/appwrite';
 import { useGlobalContext } from '../../context/GlobalProvider';
 const Create = () => {

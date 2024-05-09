@@ -5,7 +5,7 @@
     "scheme": "aora",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/logo-small.png",
+    "icon": "./assets/images/logo-square.png",
     "userInterfaceStyle": "automatic",
     "backgroundColor": "#161622",
     "splash": {
@@ -21,9 +21,9 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/logo-small.png",
-        "backgroundColor": "#161622",
-        "resizeMode": "contain"
+        "foregroundImage": "./assets/images/logo-square.png",
+        "backgroundColor": "#161622"
+  
       },
       "package": "com.stream.streamkaro",
       "permissions": [
@@ -35,7 +35,7 @@
     },
     "plugins": [
       "expo-router",
-      "expo-image-picker"
+       "expo-document-picker"
     ],
     "extra": {
       "router": {
